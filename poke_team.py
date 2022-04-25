@@ -1,51 +1,56 @@
 from pokemon import Bulbasaur, Charmander, Squirtle
+from stack_adt import ArrayStack
 
 
 class PokeTeam:
-    limit = 6
-    battle_mode = 0
-    criterion = ""
-    charm_list = []
-    bulb_list = []
-    squir_list = []
-    team = []
+    def __init__(self, trainer_name):
+        self.trainer_name = trainer_name
+        self.LIMIT = 6
+        self.battle_mode = 0
+        self.criterion = None
+        self.teamlist = []
+        self.team = None
 
-    def __init__(self) -> None:
-        limit = 6
-        battle_mode = 0
-
+    # TODO: constrain battle mode to 0, 1, 2
     def choose_team(self, new_battle_mode, new_criterion):
-        battle_mode = new_battle_mode
-        criterion = new_criterion
+        self.battle_mode = new_battle_mode
+        self.criterion = new_criterion
         is_valid = False
         while not is_valid:
             choice = input(
                 "Howdy Trainer! Choose your team as C B S\nwhere C is the number of Charmanders\nB is the number of Bulbasaurs\nS is the number of Squirtles\n"
             )
-            x = choice.split()
-            if len(x) == 3 and (x[0] + x[1] + x[2] <= self.limit):
+            x = list(map(int, choice.split()))
+            if len(x) == 3 and (x[0] + x[1] + x[2] <= self.LIMIT):
                 is_valid = True
 
         self.assign_team(x[0], x[1], x[2])
 
     def assign_team(self, charm, bulb, squir):
+
+        # create the list of pokemon
         for i in range(charm):
             temp_charm = Charmander()
-            self.team.append(temp_charm)
+            self.teamlist.append(temp_charm)
         for i in range(bulb):
             temp_bulb = Bulbasaur()
-            self.team.append(temp_bulb)
+            self.teamlist.append(temp_bulb)
         for i in range(squir):
             temp_squir = Squirtle()
-            self.team.append(temp_squir)
+            self.teamlist.append(temp_squir)
 
-    def print(self):
-        for pokemon in self.team:
-            print(
-                pokemon.get_name()
-                + " 's HP = "
-                + pokemon.get_hp()
-                + " and level = "
-                + pokemon.get_level()
-            )
-            print(",")
+        # Battle mode 0 is the set battle type
+        # it uses the stack ADT
+        if self.battle_mode == 0:
+            teamADT = ArrayStack(self.LIMIT)
+            for pokemon in self.teamlist:
+                teamADT.push(pokemon)
+            self.team = teamADT
+
+    def __str__(self):
+        string = ""
+        if self.battle_mode == 0:
+            # stack prints bottom to top, so we reverse it
+            for pokemon in list(reversed(self.team.view())):
+                string += str(pokemon) + ", "
+        return string[:-2]

@@ -4,9 +4,7 @@ from pokemon_base import PokemonBase
 
 class Charmander(PokemonBase):
     def __init__(self):
-        self.hp = 7
-        self.poke_type = "Fire"
-        self.level = 1
+        super().__init__(hp=7, poke_type="Fire")
 
         self.base_attack = 7
         self.base_defence = 4
@@ -24,15 +22,6 @@ class Charmander(PokemonBase):
     def get_speed(self):
         return self.base_speed + self.level
 
-    def get_poketype(self):
-        return self.poke_type
-
-    def get_hp(self):
-        return self.hp
-
-    def get_level(self):
-        return self.level
-
     def get_type_effectiveness(self, attacking_type):
         return super().get_type_effectiveness(self, attacking_type)
 
@@ -47,9 +36,7 @@ class Charmander(PokemonBase):
 
 class Bulbasaur(PokemonBase):
     def __init__(self):
-        self.hp = 9
-        self.poke_type = "Grass"
-        self.level = 1
+        super().__init__(hp=9, poke_type="Grass")
 
         self.base_attack = 5
         self.base_defence = 5
@@ -67,15 +54,6 @@ class Bulbasaur(PokemonBase):
     def get_speed(self):
         return self.base_speed + self.level // 2
 
-    def get_poketype(self):
-        return self.poke_type
-
-    def get_hp(self):
-        return self.hp
-
-    def get_level(self):
-        return self.level
-
     def get_type_effectiveness(self, attacking_type):
         return super().get_type_effectiveness(self, attacking_type)
 
@@ -89,9 +67,7 @@ class Bulbasaur(PokemonBase):
 
 class Squirtle(PokemonBase):
     def __init__(self):
-        self.hp = 8
-        self.poke_type = "Water"
-        self.level = 1
+        super().__init__(hp=8, poke_type="Water")
 
         self.base_attack = 4
         self.base_defence = 6
@@ -108,15 +84,6 @@ class Squirtle(PokemonBase):
 
     def get_speed(self):
         return self.base_speed
-
-    def get_poketype(self):
-        return self.poke_type
-
-    def get_hp(self):
-        return self.hp
-
-    def get_level(self):
-        return self.level
 
     def get_type_effectiveness(self, attacking_type):
         return super().get_type_effectiveness(self, attacking_type)
