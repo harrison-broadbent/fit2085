@@ -5,7 +5,7 @@ class PokemonBase(ABC):
     def __init__(self, hp, poke_type):
         self.hp = hp
         self.level = 1
-        self.get_poketype = poke_type
+        self.poke_type = poke_type
 
     @abstractmethod
     def get_name(self):

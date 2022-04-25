@@ -22,9 +22,6 @@ class Charmander(PokemonBase):
     def get_speed(self):
         return self.base_speed + self.level
 
-    def get_type_effectiveness(self, attacking_type):
-        return super().get_type_effectiveness(self, attacking_type)
-
     def resolve_damage(self, attacking_type, damage):
         damage = damage * self.get_type_effectiveness(attacking_type)
 
@@ -54,9 +51,6 @@ class Bulbasaur(PokemonBase):
     def get_speed(self):
         return self.base_speed + self.level // 2
 
-    def get_type_effectiveness(self, attacking_type):
-        return super().get_type_effectiveness(self, attacking_type)
-
     def resolve_damage(self, attacking_type, damage):
         damage = damage * self.get_type_effectiveness(attacking_type)
         if damage > self.get_defence() + 5:
@@ -84,9 +78,6 @@ class Squirtle(PokemonBase):
 
     def get_speed(self):
         return self.base_speed
-
-    def get_type_effectiveness(self, attacking_type):
-        return super().get_type_effectiveness(self, attacking_type)
 
     def resolve_damage(self, attacking_type, damage):
         damage = damage * self.get_type_effectiveness(attacking_type)

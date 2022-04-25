@@ -12,9 +12,9 @@ class PokeTeam:
         self.team = None
 
     # TODO: constrain battle mode to 0, 1, 2
-    def choose_team(self, new_battle_mode, new_criterion):
-        self.battle_mode = new_battle_mode
-        self.criterion = new_criterion
+    def choose_team(self, battle_mode, criterion):
+        self.battle_mode = battle_mode
+        self.criterion = criterion
         is_valid = False
         while not is_valid:
             choice = input(
